@@ -44,9 +44,11 @@ RUN apt-get install -y zlib1g-dev \
                        libcairo2-dev \
                        libpango1.0-dev \
                        libgtk2.0-dev \
-                       libgl1-mesa-dev
+                       libgl1-mesa-dev \
+                       libdbus-1-dev
 
-COPY --from=depbuilder /opt/dependencies /opt/dependencies
+RUN mkdir -p /opt/dependencies
+COPY --from=depbuilder /opt/dependencies/destdir /opt/dependencies/destdir
 COPY --from=depbuilder /opt/cmake /opt/cmake
 RUN ln -s /opt/cmake/bin/cmake /usr/local/bin/cmake
 COPY build-all.sh /opt/build-all.sh

@@ -1,0 +1,3 @@
+[submodule "slic3r"]
+	path = slic3r
+	url = git@github.com:slic3r/Slic3r.git
