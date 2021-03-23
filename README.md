@@ -2,6 +2,8 @@
 
 This repository contains a submodule and the relevant Dockerfile container images to pre-build a functioning compilation environment on Linux with [Docker](https://www.docker.com/) or [podman](podman.io).
 
+These images are available on [Docker Hub](https://hub.docker.com/repository/docker/slic3r/appimage-build).
+ 
 ## Usage
 
 Note: these commands run the same with podman 3.0.1 or newer; just replace `docker` for `podman`
@@ -27,3 +29,17 @@ docker run --rm -it -v /build:/path/to/build/output -v /source:/path/to/Slic3r/s
 cmake -DCMAKE_PREFIX_PATH=${1}/usr/local -DSLIC3R_STATIC=1 /source
 make -j4 Slic3r
 ``` 
+
+## Images
+
+* `docker.io/slic3r/slic3r-appimage-build`
+    * Prebuilt dependencies on Ubuntu Bionic (18.04 LTS)
+    * Suitable for static linking for Slic3r builds.
+    * Dependencies are located in `/opt/dependencies/usr/local` prefix for CMake.
+* `docker.io/slic3r/ubuntu-build`
+    * Suitable for building dynamically-linked dependencies for Slic3r on Debian (stable/testing/sid)
+* `docker.io/slic3r/debian-build`
+    * Suitable for building dynamically-linked dependencies for Slic3r on Debian (stable/testing/sid)
+* `docker.io/slic3r/fedora-build`
+    * Fedora-based container with Slic3r dependencies installed from pacakge manager. 
+    * Suitable for building dynamically-linked dependencies for Slic3r on Fedora. 
